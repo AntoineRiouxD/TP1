@@ -3,17 +3,31 @@ public class CV {
 
 	private String nom, prenom, formation, attentes;
 	private String[] competences;
-	private int experiences;
+	private int experience;
 	
 	public CV(String nom, String prenom, String formation, 
-			int experiences, String[]competences, String attentes) {
+			int experience, String[]competences, String attentes) {
 		setNom(nom);
 		setPrenom(prenom);
+		setFormation(formation);
+		setExperience(experience);
+		setCompetences(competences);
+		setAttentes(attentes);	
 	}
 	
 	public static void afficher(CV cv) {
-		
+		System.out.println("\nPrénom : " + cv.getPrenom());
+		System.out.println("Nom : " + cv.getNom());
+		System.out.println("Formation : " + cv.getFormation());
+		System.out.println("Experience (Années) : " + cv.getExperience());
+		System.out.print("Competences : ");
+		for (int i=0; i < cv.getCompetences().length ;i++) {
+			System.out.print(cv.getCompetences()[i] + " / ");
+		}
+		System.out.println("");
+		System.out.println("Attente(s) : " + cv.getAttentes());
 	}
+	
 	public static void main(String[] args) {
 		System.out.println("Bienvenue chez Barrette!");
 		
@@ -38,8 +52,8 @@ public class CV {
 		this.formation = formation;
 	}
 	
-	public void setExperiences(int experiences) {
-		this.experiences = experiences;
+	public void setExperience(int experiences) {
+		this.experience = experiences;
 	}
 	
 	public void setCompetences(String[] competences) {
@@ -48,5 +62,29 @@ public class CV {
 	
 	public void setAttentes(String attentes) {
 		this.attentes = attentes;
+	}
+	
+	public String getNom() {
+		return this.nom;
+	}
+	
+	public String getPrenom() {
+		return this.prenom;
+	}
+	
+	public String getFormation() {
+		return this.formation;
+	}
+	
+	public int getExperience() {
+		return this.experience;
+	}
+	
+	public String[] getCompetences() {
+		return this.competences;
+	}
+	
+	public String getAttentes() {
+		return this.attentes;
 	}
 }
