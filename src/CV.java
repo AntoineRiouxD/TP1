@@ -11,8 +11,19 @@ public class CV {
 		setPrenom(prenom);
 	}
 	
-	public static void main(String[] args) {
+	public static void afficher(CV cv) {
 		
+	}
+	public static void main(String[] args) {
+		System.out.println("Bienvenue chez Barrette!");
+		
+		String[] competencesAntoine = {"Programmation"};
+		CV cvAntoine = new CV("Rioux", "Antoine", "DEP", '1' , competencesAntoine, "Aucune attentes");
+		String[] competenceSimon = {"Programmation", "Soutiens informatique"};
+		CV cvSimon = new CV("Nolet", "Simon", "DEP", '1', competenceSimon, "Souhaite apprendre");
+		
+		afficher(cvAntoine);
+		afficher(cvSimon);
 	}
 
 	public void setNom(String nom) {
