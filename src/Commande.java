@@ -1,3 +1,11 @@
+/*
+ * Nom de classe : Commande
+ *
+ * Liste des méthodes : afficherCommande(), creerCommandeComplet(), getPrix()
+ * 
+ * Programmeur     : Simon Nolet et Antoine Rioux-Demers
+ */
+
 public class Commande {
 	
 	private String[] clients, repas, commandes;

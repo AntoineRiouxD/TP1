@@ -1,3 +1,11 @@
+/*
+ * Nom de classe : Principal
+ *
+ * Liste des méthodes : listToTableau(), lireFichier()
+ * 
+ * Programmeur     : Simon Nolet et Antoine Rioux-Demers
+ */
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.EmptyStackException;

@@ -1,0 +1,7 @@
+Normes de programmation:
+
+1. Bien identifier ce que fait les variable par leur nom.
+
+2. Bien identifier ce que fait les méthodes font par leur nom.
+
+3. Chaque fichier java devrait commencer par un commentaire multiligne contenant au minimum d'informations
