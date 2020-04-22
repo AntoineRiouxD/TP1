@@ -28,7 +28,73 @@ public class Commande {
 		}
 	}
 	
-	private static String[] creerCommandeComplet (String[] Clients, String[] Repas, String[] Commandes) {
+	public void afficherErreurCommande() {
+		
+		
+		
+		System.out.println("Voici les erreurs du fichiers:");
+		
+		TrouverErreur(this.clients, this.repas, this.commandes);
+	}
+	
+	public String[] CommandetableauFichier() {
+		
+		String[] CommandeComplet = creerCommandeComplet(this.clients, this.repas, this.commandes);
+		
+		return CommandeComplet;
+	}
+	
+	public String[] TrouverErreur(String[] Clients, String[] Repas, String[] Commandes) {
+		
+		boolean ClientIncorrect;
+		boolean PlatIncorrect;
+		String[] TabErreurs = new String[Clients.length + Repas.length];
+		
+		for (int i = 0; i < Clients.length; i++) {			
+			String[] CommandeChoisi = new String[3];
+			ClientIncorrect = true;
+			
+			for (int j = 0; j < Commandes.length && ClientIncorrect; j++) {
+				
+				CommandeChoisi = Commandes[j].split(" ", 3);
+				
+				if (CommandeChoisi[0].contains(Clients[i])) {			
+						ClientIncorrect = false;						
+				}			
+			}
+			
+			if (ClientIncorrect) {
+				System.out.println("Le client " + CommandeChoisi[0] + " n'existe pas" );
+				
+			}
+					
+		}
+		
+		String[] RepasChoisi;
+		for (int i = 0; i < Repas.length; i++) {			
+			String[] CommandeChoisi = new String[3];
+			RepasChoisi = Repas[i].split(" ", 2);
+			PlatIncorrect = true;
+			
+			for (int j = 0; j < Commandes.length && PlatIncorrect; j++) {
+				CommandeChoisi = Commandes[j].split(" ", 3);
+				
+				if (CommandeChoisi[1].contains(RepasChoisi[0])) {			
+						PlatIncorrect = false;						
+				}			
+			}
+			
+			if (PlatIncorrect) {
+				System.out.println("Le repas " + CommandeChoisi[1] + " n'existe pas" );
+				
+			}
+					
+		}
+		
+		return TabErreurs;
+	}
+	
+	public static String[] creerCommandeComplet (String[] Clients, String[] Repas, String[] Commandes) {
 		String[] CommandeComplet = new String[Clients.length];
 		java.text.DecimalFormat df = new java.text.DecimalFormat("0.00");
 		double prixTotal;
@@ -44,7 +110,7 @@ public class Commande {
 					prixTotal += getPrix(CommandeChoisi[1], Repas) * Integer.parseInt(CommandeChoisi[2]);							
 				}			
 			}		
-			CommandeComplet[i] = Clients[i] + " " +  df.format(prixTotal) + "$";		
+			CommandeComplet[i] = Clients[i] + " " +  df.format(ajoutTaxes(prixTotal)) + "$";		
 		}		
 		return CommandeComplet;		
 	}
@@ -62,6 +128,20 @@ public class Commande {
 			}
 		}
 		return prix;	
+	}
+	
+	private static double ajoutTaxes(double prixTotal) {	
+		
+		double prixTaxes;
+		double TPS;
+		double TVQ;
+		
+				
+		TPS = (prixTotal * 5) / 100;
+		TVQ = (prixTotal * 9.975) / 100;
+		prixTaxes = prixTotal + TPS + TVQ;
+		
+		return prixTaxes;	
 	}
 	
 

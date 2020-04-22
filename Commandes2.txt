@@ -8,9 +8,11 @@ Poutine 10.5
 Frites 2.5
 Repas_Poulet 15.75 
 Salade 5.98
+Boeuf 7.89
 Commandes : 
 Martin Poutine 1
 Céline Frites 4
 Marc Repas_Poulet 1
 Marc Salade 3
+Robert pizza 2
 Fin

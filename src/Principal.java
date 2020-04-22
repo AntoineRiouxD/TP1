@@ -7,9 +7,22 @@
  */
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.EmptyStackException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.TimeZone;
 
 public class Principal {
 
@@ -24,7 +37,9 @@ public class Principal {
 		Commande commande = new Commande(listToTableau(listClients), 
 				listToTableau(listRepas), listToTableau(listCommandes));
 		
+		commande.afficherErreurCommande();
 		commande.afficherCommande();
+		ecrireFichier(commande);
 	}
 	
 	public static String[] listToTableau(ArrayList<String> list) {
@@ -38,7 +53,7 @@ public class Principal {
 	}
 	
 	public static void lireFichier() {
-		System.out.println("Entrez votre fichier de commandes! :");
+		System.out.println(" Entrez votre fichier de commandes! :");
 		String fichierPath = scanner.nextLine();
 		try {
 			File fichier = new File(fichierPath);
@@ -92,4 +107,22 @@ public class Principal {
 		}
 	
 	}
+	
+	public static void ecrireFichier(Commande commande) {
+		
+		List<String> lines = Arrays.asList(commande.CommandetableauFichier());
+		DateTimeFormatter timeStampPattern = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH");
+		Path file = Paths.get("Facture-du-" + timeStampPattern.format(java.time.LocalDateTime.now()) + "h.txt");
+		
+		try {
+			Files.write(file, lines, StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+	
+
+	
 }
